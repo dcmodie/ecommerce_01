@@ -1,0 +1,78 @@
+{
+  "products":[   
+    {
+      "id":1,
+      "name":"Bicycle 1",
+      "cost":1499.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=1",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+
+    },
+    {
+      "id":2,
+      "name":"Bicycle 2",
+      "cost":229.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=2",
+      "description":"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo"
+
+    },
+    {
+      "id":3,
+      "name":"Bicycle 3",
+      "cost":550.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=3",
+      "description":"quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat."
+    },
+    {
+      "id":4,
+      "name":"Bicycle 4",
+      "cost":1035.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=4",
+      "description":"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+
+    },
+    {
+      "id":5,
+      "name":"Bicycle 5",
+      "cost":1159.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=5",
+      "description":"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+
+    } ,
+    {
+      "id":4,
+      "name":"Bicycle 6",
+      "cost":1499.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=6",
+      "description":"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+
+    } ,
+    {
+      "id":4,
+      "name":"Bicycle 7",
+      "cost":349.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=7",
+      "description":"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+
+    } ,
+    {
+      "id":4,
+      "name":"Bicycle 8",
+      "cost":559.00,
+      "image":"https://source.unsplash.com/random/200x200?sig=8",
+      "description":"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+
+    } 
+  
+  
+  ],
+    "carts":[{
+      "id":1,
+      "userId":1,
+      "selected":["1"]
+
+    }
+  ]
+}
+
+
