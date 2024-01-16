@@ -40,7 +40,7 @@
 
     } ,
     {
-      "id":4,
+      "id":6,
       "name":"Bicycle 6",
       "cost":1499.00,
       "image":"https://source.unsplash.com/random/200x200?sig=6",
@@ -48,7 +48,7 @@
 
     } ,
     {
-      "id":4,
+      "id":7,
       "name":"Bicycle 7",
       "cost":349.00,
       "image":"https://source.unsplash.com/random/200x200?sig=7",
@@ -56,11 +56,11 @@
 
     } ,
     {
-      "id":4,
+      "id":8,
       "name":"Bicycle 8",
       "cost":559.00,
       "image":"https://source.unsplash.com/random/200x200?sig=8",
-      "description":"inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+      "description":"queso veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
 
     } 
   

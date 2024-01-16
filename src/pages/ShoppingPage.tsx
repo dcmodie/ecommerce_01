@@ -1,12 +1,14 @@
 import { useFetchRepositoriesQuery } from '../store';
 import ProductCard from '../components/ProductCard';
+import BooksContext from '../context/Books';
+import { useContext } from 'react';
 
 const ShoppingPage: React.FC = () => {
   const { data, isLoading, error } = useFetchRepositoriesQuery('vite');
-
-  console.log('data', data);
-  console.log('error', error);
-  console.log('isLoading', isLoading);
+  const value = useContext(BooksContext);
+  console.log('value', value);
+  // console.log('error', error);
+  // console.log('isLoading', isLoading);
 
   if (isLoading) {
     return undefined;

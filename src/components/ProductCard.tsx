@@ -17,7 +17,7 @@ const bull = (
 //this is actually a product, it may be used a lot of places, so put in types dir import as needed
 //here we could extend it for this one
 
-//move this to a types dir
+//TODO move this to a types dir
 export interface Product {
   id: string;
   name: string;
@@ -25,7 +25,7 @@ export interface Product {
   image: string;
   description: string;
 }
-//so if we had a propety in here that only needed for UI
+//could a property in here that only needed for UI
 export interface ProductCardProps {
   item: Product;
 }
