@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Routes, Route, Outlet, NavLink } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ShoppingPage from './pages/ShoppingPage';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+import TestContext from './context/TestContext';
 
 import './App.css';
 
