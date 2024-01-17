@@ -66,12 +66,13 @@
   
   
   ],
-    "carts":[{
+    "cart":[{
       "id":1,
       "userId":1,
-      "selected":["1"]
+      "selected":["1","4","8"]
 
     }
+  
   ]
 }
 
