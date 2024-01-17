@@ -16,7 +16,7 @@ const MyRoutes = () => {
   );
 };
 
-//diff file here
+//TODO diff file here
 const Home = () => {
   return (
     <>
@@ -24,7 +24,7 @@ const Home = () => {
     </>
   );
 };
-//diff file for this...
+//TODO diff file for this...
 const Layout = () => {
   const style = ({ isActive }) => ({
     fontWeight: isActive ? 'bold' : 'normal',

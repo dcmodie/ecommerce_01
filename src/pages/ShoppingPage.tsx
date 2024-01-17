@@ -1,14 +1,16 @@
-import { useFetchRepositoriesQuery } from '../store';
 import ProductCard from '../components/ProductCard';
 import BooksContext from '../context/Books';
 import { useContext } from 'react';
+import { fetchProducts } from '../apis/products';
+import { useQuery } from '@tanstack/react-query';
 
 const ShoppingPage: React.FC = () => {
-  const { data, isLoading, error } = useFetchRepositoriesQuery('vite');
-  const value = useContext(BooksContext);
-  console.log('value', value);
-  // console.log('error', error);
-  // console.log('isLoading', isLoading);
+  const { count, incrementCount } = useContext(BooksContext);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProducts,
+  });
+  console.log('products', data);
 
   if (isLoading) {
     return undefined;
@@ -16,15 +18,26 @@ const ShoppingPage: React.FC = () => {
     return <div>Error loading inventory</div>;
   } else {
     return (
-      <div className="flex flex-wrap">
-        {data?.map((item) => {
-          return <ProductCard item={item} key={item.id} />;
-        })}
+      <div>
+        <button onClick={incrementCount}>incr</button>
+        <div className="flex flex-wrap">
+          {data?.map((item) => {
+            return <ProductCard item={item} key={item.id} />;
+          })}
+        </div>
       </div>
     );
   }
 };
 export default ShoppingPage;
+
+//NOTES:
+//intro react query
+//https://www.youtube.com/watch?v=kmWIGom-7lU
+
+//fetch on button click
+//https://www.youtube.com/watch?app=desktop&v=4ovMmHfTxoA
+
 //q:when wide cards should spread
 
 //key

@@ -1,17 +1,26 @@
 import { useState, useContext, useReducer } from 'react';
 import { Routes, Route, Outlet, NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
-
-import BooksContext from './context/Books.tsx';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import { Provider } from './context/Books.tsx';
 import MyRoutes from './MyRoutes.tsx';
-//import TestContext from './context/TestContext';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import './App.css';
+const queryClient = new QueryClient();
 const App = () => {
   return (
-    <BooksContext.Provider value={3}>
-      <MyRoutes />
-    </BooksContext.Provider>
+    <Provider>
+      <QueryClientProvider client={queryClient}>
+        <MyRoutes />
+      </QueryClientProvider>
+    </Provider>
   );
 };
 
