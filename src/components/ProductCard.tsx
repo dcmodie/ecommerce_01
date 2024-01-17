@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Product } from '../utilities/Types';
 
 const bull = (
   <Box
@@ -14,18 +15,8 @@ const bull = (
     •
   </Box>
 );
-//this is actually a product, it may be used a lot of places, so put in types dir import as needed
-//here we could extend it for this one
 
-//TODO move this to a types dir
-export interface Product {
-  id: string;
-  name: string;
-  cost: number;
-  image: string;
-  description: string;
-}
-//could a property in here that only needed for UI
+//could add a property in here that is only needed in the UI
 export interface ProductCardProps {
   item: Product;
 }

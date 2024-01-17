@@ -13,6 +13,7 @@ const ShoppingPage: React.FC = () => {
   console.log('products', data);
 
   if (isLoading) {
+    //TODO add loading spinner
     return undefined;
   } else if (error) {
     return <div>Error loading inventory</div>;

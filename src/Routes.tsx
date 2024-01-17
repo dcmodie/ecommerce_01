@@ -8,22 +8,13 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<HomePage />} />
         <Route path="home" element={<HomePage />} />
         <Route path="shopping" element={<ShoppingPage />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Route>
     </Routes>
-  );
-};
-
-//TODO diff file here
-const Home = () => {
-  return (
-    <>
-      <h2>Home</h2>
-    </>
   );
 };
 
