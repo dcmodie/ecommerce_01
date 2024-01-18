@@ -3,16 +3,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const CartPage = () => {
-  // const mutation = useMutation({
-  //   mutationFn: (newTodo) => {
-  //     return axios.post('http://localhost:3001/cart', {
-  //       id: 3,
-  //       userId: 1,
-  //       selected: ['1', '2', '8', '6'],
-  //     });
-  //   },
-  // });
-
   const mutation = useMutation({
     mutationFn: addItem,
   });
@@ -21,7 +11,13 @@ const CartPage = () => {
     <div>
       cart
       <button
-        onClick={() => mutation.mutate({ id: new Date(), title: 'Do Laundry' })}
+        onClick={() =>
+          mutation.mutate({
+            id: 8,
+            userId: 1,
+            selected: ['1', '4', '8'],
+          })
+        }
       >
         mutate
       </button>
@@ -29,3 +25,8 @@ const CartPage = () => {
   );
 };
 export default CartPage;
+
+//TODO
+//connect add to cart button on card
+// make cart list items
+// add to cart, then check cart for stale data

@@ -4,12 +4,8 @@ import { CartObject } from '../utilities/Types';
 const fetchCart = async () =>
   await axios.get<CartObject[]>('http://localhost:3001/cart');
 
-const addItem = async (newTodo) => {
-  return axios.post('http://localhost:3001/cart', {
-    id: 99,
-    userId: 1,
-    selected: ['1', '2', '8', '6'],
-  });
+const addItem = async (item: CartObject) => {
+  return axios.post('http://localhost:3001/cart', item);
 
   // const indx = cartItems.map((e) => e.id).indexOf(id);
   // if (indx !== -1) {
