@@ -6,6 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Product } from '../utilities/Types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { addItem } from '../apis/cart';
 
 const bull = (
   <Box
@@ -24,6 +26,19 @@ export interface ProductCardProps {
 //q: flex , or css grid
 export default function ProductCard({ item }: ProductCardProps) {
   //console.log('hello ', id, name, cost, image);
+  const queryClient = useQueryClient();
+  // const { refetch } = useQuery({
+  //   queryKey: ['cart'],
+  //   queryFn: fetchCart,
+  //   enabled: false,
+  // });
+  const mutation = useMutation({
+    mutationFn: addItem,
+    onSuccess: async () => {
+      //refetch();
+      // queryClient.invalidateQueries({ queryKey: ['cart'] });
+    },
+  });
   const { name, image, cost, description } = item;
   return (
     <Card sx={{ width: 200 }} className="mr-6 mb-6">
@@ -43,9 +58,13 @@ export default function ProductCard({ item }: ProductCardProps) {
         <Button
           size="small"
           color="warning"
-          onClick={(e) => {
-            console.log('a t c');
-          }}
+          onClick={() =>
+            mutation.mutate({
+              id: 55,
+              userId: 1,
+              selected: ['1', '4', '8'],
+            })
+          }
         >
           Add To Cart
         </Button>
