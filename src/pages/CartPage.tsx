@@ -3,6 +3,13 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const CartPage = () => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['cart'],
+    queryFn: fetchCart,
+  });
+
+  console.log('data:', data);
+
   const mutation = useMutation({
     mutationFn: addItem,
   });
@@ -13,7 +20,7 @@ const CartPage = () => {
       <button
         onClick={() =>
           mutation.mutate({
-            id: 8,
+            id: 9,
             userId: 1,
             selected: ['1', '4', '8'],
           })
