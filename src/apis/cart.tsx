@@ -1,23 +1,27 @@
 import axios from 'axios';
-import { CartObject } from '../utilities/Types';
+import { CartItem } from '../utilities/Types';
 
 const fetchCart = async () =>
-  await axios.get<CartObject[]>('http://localhost:3001/cart');
+  await axios.get<CartItem[]>('http://localhost:3001/cart');
 
-const addItem = async (item: CartObject) => {
-  return axios.post('http://localhost:3001/cart', item);
+const addItem = async (itemId: number) => {
+  //this should be an insert or an update
 
-  // const indx = cartItems.map((e) => e.id).indexOf(id);
-  // if (indx !== -1) {
-  //   const newArray = [...cartItems];
-  //   newArray[indx].quantity += 1;
-  //   setCartItems(newArray);
-  // } else {
-  //   const newObj = { id: id, quantity: 1 };
-  //   setCartItems([...cartItems, newObj]);
-  // }
-  //
-  //await axios.
+  //get index of item
+  //return axios.post('http://localhost:3001/cart', itemId);
+
+  const cart = await fetchCart();
+  const indx = cart.data.map((e) => e.id).indexOf(itemId);
+  if (indx !== -1) {
+    //const newArray = [...cart.data];
+    cart.data[indx].amount += 1;
+    //replace array?
+  } else {
+    const newObj = { id: itemId, amount: 1 };
+    cart.data.push(newObj);
+    //setCartItems([...cartItems, newObj]);
+  }
+  console.log('will add to db: ', cart.data);
 };
 
 const testFcn = () => {

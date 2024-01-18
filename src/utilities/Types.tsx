@@ -5,9 +5,13 @@ export interface Product {
   image: string;
   description: string;
 }
-export interface CartObject {
+export type CartItem = {
   id: number;
-  userId: number;
-  selected: string[];
-}
+  amount: number;
+};
+
+// export interface CartObject {
+//   userId: number;
+//   items: CartItem[];
+// }
 //another way is folder types, file Products

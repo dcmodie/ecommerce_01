@@ -55,17 +55,7 @@ export default function ProductCard({ item }: ProductCardProps) {
         <Typography variant="body2">{description} </Typography>
       </CardContent>
       <CardActions className="relative">
-        <Button
-          size="small"
-          color="warning"
-          onClick={() =>
-            mutation.mutate({
-              id: 55,
-              userId: 1,
-              selected: ['1', '4', '8'],
-            })
-          }
-        >
+        <Button size="small" color="warning" onClick={() => mutation.mutate(1)}>
           Add To Cart
         </Button>
       </CardActions>
