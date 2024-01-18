@@ -1,16 +1,27 @@
 import ProductCard from '../components/ProductCard';
 import BooksContext from '../context/Books';
 import { useContext } from 'react';
-import { fetchProducts } from '../apis/products';
-import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useShoppingCart } from '../context/ShoppingCartContext';
+import useProducts from '../hooks/useProducts';
 
 const ShoppingPage: React.FC = () => {
   const { count, incrementCount } = useContext(BooksContext);
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: fetchProducts,
+  const { getItemQuantity, cartItems, increaseItemQuantity } =
+    useShoppingCart();
+  // useMutation for changing the cart
+  //     onSuccess, invalidate the query
+  //     look up documentation on react query invaliation
+
+  const { data, error, isLoading, isSuccess, refetch } = useProducts({
+    enabled: false,
   });
   console.log('products', data);
+  console.log('cartItems:', cartItems);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   if (isLoading) {
     //TODO add loading spinner
@@ -20,11 +31,18 @@ const ShoppingPage: React.FC = () => {
   } else {
     return (
       <div>
-        <button onClick={incrementCount}>incr</button>
+        <button
+          onClick={() => {
+            increaseItemQuantity(99);
+          }}
+        >
+          increment
+        </button>
         <div className="flex flex-wrap">
-          {data?.map((item) => {
-            return <ProductCard item={item} key={item.id} />;
-          })}
+          {isSuccess &&
+            data.map((item) => {
+              return <ProductCard item={item} key={item.id} />;
+            })}
         </div>
       </div>
     );

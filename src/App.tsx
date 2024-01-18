@@ -8,15 +8,17 @@ import {
 import { Provider } from './context/Books.tsx';
 import Routes from './Routes.tsx';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
 import './App.css';
+import { ShoppingCartProvider } from './context/ShoppingCartContext.tsx';
 const queryClient = new QueryClient();
 const App = () => {
   return (
     <Provider>
-      <QueryClientProvider client={queryClient}>
-        <Routes />
-      </QueryClientProvider>
+      <ShoppingCartProvider>
+        <QueryClientProvider client={queryClient}>
+          <Routes />
+        </QueryClientProvider>
+      </ShoppingCartProvider>
     </Provider>
   );
 };
