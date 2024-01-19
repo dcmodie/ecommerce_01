@@ -1,32 +1,11 @@
 import { fetchCart, addItem } from '../apis/cart';
-import { fetchProducts, fetchOnly } from '../apis/products';
-import { useMutation, useQuery, useQueries } from '@tanstack/react-query';
+import { fetchOnly } from '../apis/products';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 const CartPage = () => {
-  const [prods, setProds] = useState(['sadf']);
+  const [products, setProducts] = useState();
 
-  //const [data] = useQuery(fetchOnly)
-  const {
-    data: prodData,
-    error: error0,
-    isLoading: isLoading0,
-    refetch,
-  } = useQuery({
-    queryKey: ['cartProducts', { productsArray: prods }],
-    queryFn: (prods) => fetchOnly(prods),
-  });
-
-  // const results = useQueries({
-  //   queries: [
-  //     { queryKey: ['cart', 1], queryFn: fetchCart, staleTime: Infinity },
-  //     {
-  //       queryKey: ['products', 2],
-  //       queryFn: fetchProducts,
-  //       staleTime: Infinity,
-  //     },
-  //   ],
-  // });
   const {
     data: cartData,
     error,
@@ -36,8 +15,17 @@ const CartPage = () => {
     queryFn: fetchCart,
   });
 
-  const renderItems = () => {
-    return prodData?.map((product) => {
+  const {
+    data: productData,
+    error: error0,
+    isLoading: isLoading0,
+  } = useQuery({
+    queryKey: ['cartProducts', { productsArray: products }],
+    queryFn: (prods) => fetchOnly(prods),
+  });
+
+  const renderProducts = () => {
+    return productData?.map((product) => {
       return <div>{product.cost}</div>;
     });
   };
@@ -46,16 +34,10 @@ const CartPage = () => {
     const prods = cartData?.data.map((item) => {
       return item.id;
     });
-    //console.log('arr:', arr);
-    //create array and send
-    setProds(prods);
-    refetch();
-    console.log('isLoading0:', isLoading0);
-    console.log('asdf: ', prodData);
+    setProducts(prods);
   }, [cartData]);
-  // console.log(results);
 
-  return <div>{renderItems()}</div>;
+  return <div>{renderProducts()}</div>;
 };
 export default CartPage;
 
