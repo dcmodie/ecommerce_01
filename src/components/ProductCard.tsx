@@ -39,7 +39,7 @@ export default function ProductCard({ item }: ProductCardProps) {
       // queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
   });
-  const { name, image, cost, description } = item;
+  const { id, name, image, cost, description } = item;
   return (
     <Card sx={{ width: 200 }} className="mr-6 mb-6">
       <CardContent onClick={() => console.log('ckick')}>
@@ -55,7 +55,11 @@ export default function ProductCard({ item }: ProductCardProps) {
         <Typography variant="body2">{description} </Typography>
       </CardContent>
       <CardActions className="relative">
-        <Button size="small" color="warning" onClick={() => mutation.mutate(2)}>
+        <Button
+          size="small"
+          color="warning"
+          onClick={() => mutation.mutate(id)}
+        >
           Add To Cart
         </Button>
       </CardActions>
