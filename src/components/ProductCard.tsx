@@ -55,7 +55,7 @@ export default function ProductCard({ item }: ProductCardProps) {
         <Typography variant="body2">{description} </Typography>
       </CardContent>
       <CardActions className="relative">
-        <Button size="small" color="warning" onClick={() => mutation.mutate(1)}>
+        <Button size="small" color="warning" onClick={() => mutation.mutate(2)}>
           Add To Cart
         </Button>
       </CardActions>
