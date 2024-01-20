@@ -2,7 +2,10 @@ import { fetchCart, addItem } from '../apis/cart';
 import { fetchOnly } from '../apis/products';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-
+import {CartItem} from '../types'
+import CartProductCard, {
+  CartProductCardProps,
+} from '../components/CartProductCard';
 const CartPage = () => {
   const [products, setProducts] = useState();
 
@@ -24,9 +27,26 @@ const CartPage = () => {
     queryFn: (prods) => fetchOnly(prods),
   });
 
+  const getQuantity = (index:number) => {
+
+    return ((cartData) ? cartData?[index].amount : 0)
+
+ 
+  };
+
+  // interface CartProduct {
+  //   Product;
+  // }
+  //crate type and sent with added quantity
+  //figure out hwo to send props separately
   const renderProducts = () => {
-    return productData?.map((product) => {
-      return <div>{product.cost}</div>;
+    return productData?.map((product, index) => {
+      const quantity = getQuantity(index);
+      const blah: CartProductCardProps = {
+        item: product,
+        amount: 3,
+      };
+      return <CartProductCard {...blah} key={product.id} />;
     });
   };
 
@@ -37,7 +57,17 @@ const CartPage = () => {
     setProducts(prods);
   }, [cartData]);
 
-  return <div>{renderProducts()}</div>;
+  const renderContent = () => {
+    if (isLoading || isLoading0) {
+      return <div>Loading</div>;
+    } else if (error0 || error) {
+      return <div>error</div>;
+    } else {
+      return <div>{renderProducts()}</div>;
+    }
+  };
+
+  return <div>{renderContent()}</div>;
 };
 export default CartPage;
 

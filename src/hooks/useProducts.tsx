@@ -1,6 +1,6 @@
 import { fetchProducts } from '../apis/products';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { Product } from '../utilities/Types';
+import { Product } from '../types';
 //this allows us to assgin an options object if we want, but 'queryKey' | 'queryFn' will be ignored, we are hardcoding those here
 const useProducts = (
   options?: Omit<UseQueryOptions<Product[]>, 'queryKey' | 'queryFn'>
