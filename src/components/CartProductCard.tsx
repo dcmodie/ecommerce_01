@@ -20,16 +20,16 @@ const bull = (
 //could add a property in here that is only needed in the UI
 export interface CartProductCardProps {
   item: Product;
-  amount: number;
+  quantity: number;
 }
 //q: add to cart on bottom
 //q: flex , or css grid
 export default function CartProductCard({
   item,
-  amount,
+  quantity,
 }: CartProductCardProps) {
   console.log('item: ', item);
-  console.log('amount: ', amount);
+  console.log('quantity: ', quantity);
   const mutation = useMutation({
     mutationFn: addItem,
     onSuccess: async () => {
@@ -51,7 +51,7 @@ export default function CartProductCard({
           ${cost}.00
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Quantity {amount}
+          Quantity {quantity}
         </Typography>
       </CardContent>
       <CardActions className="relative">

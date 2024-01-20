@@ -29,7 +29,7 @@ const CartPage = () => {
 
   const getQuantity = (index:number) => {
 
-    return ((cartData) ? cartData?[index].amount : 0)
+    return ((cartData) ? cartData?[index].quantity : 0)
 
  
   };
@@ -44,7 +44,7 @@ const CartPage = () => {
       const quantity = getQuantity(index);
       const blah: CartProductCardProps = {
         item: product,
-        amount: 3,
+        quantity: 3,
       };
       return <CartProductCard {...blah} key={product.id} />;
     });

@@ -10,10 +10,10 @@ const addItem = async (itemId: number) => {
   if (indx !== -1) {
     return axios.put(`http://localhost:3001/cart/${itemId}`, {
       id: itemId,
-      amount: cart.data[indx].amount + 1,
+      quantity: cart.data[indx].quantity + 1,
     });
   } else {
-    const newObj = { id: itemId, amount: 1 };
+    const newObj = { id: itemId, quantity: 1 };
     //cart.data.push(newObj);
     return axios.post('http://localhost:3001/cart', newObj);
   }
