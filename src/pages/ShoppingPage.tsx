@@ -6,7 +6,7 @@ import { useShoppingCart } from '../context/ShoppingCartContext';
 import useProducts from '../hooks/useProducts';
 
 const ShoppingPage: React.FC = () => {
-  const { count, incrementCount } = useContext(BooksContext);
+  //const { count, incrementCount } = useContext(BooksContext);
   const { getItemQuantity, cartItems, increaseItemQuantity } =
     useShoppingCart();
   // useMutation for changing the cart

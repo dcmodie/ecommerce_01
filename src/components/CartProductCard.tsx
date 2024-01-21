@@ -5,17 +5,9 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Product } from '../types';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addItem } from '../apis/cart';
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 
 //could add a property in here that is only needed in the UI
 export interface CartProductCardProps {
@@ -24,17 +16,16 @@ export interface CartProductCardProps {
 }
 //q: add to cart on bottom
 //q: flex , or css grid
-export default function CartProductCard({
-  item,
-  quantity,
-}: CartProductCardProps) {
+export default function CartProductCard({ cardProps }: CartProductCardProps) {
+  const { item, quantity } = cardProps;
   console.log('item: ', item);
   console.log('quantity: ', quantity);
+  const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: addItem,
     onSuccess: async () => {
       //refetch();
-      // queryClient.invalidateQueries({ queryKey: ['cart'] });
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
   });
   const { id, name, image, cost, description } = item;
@@ -51,7 +42,13 @@ export default function CartProductCard({
           ${cost}.00
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          Quantity {quantity}
+          <input
+            type="number"
+            min="0"
+            max="100"
+            value={quantity}
+            onChange={() => mutation.mutate(id)}
+          />
         </Typography>
       </CardContent>
       <CardActions className="relative">

@@ -2,10 +2,11 @@ import { fetchCart, addItem } from '../apis/cart';
 import { fetchOnly } from '../apis/products';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import {CartItem} from '../types'
+import { CartItem } from '../types';
 import CartProductCard, {
   CartProductCardProps,
 } from '../components/CartProductCard';
+import { getFormHelperTextUtilityClasses } from '@mui/material';
 const CartPage = () => {
   const [products, setProducts] = useState();
 
@@ -27,26 +28,20 @@ const CartPage = () => {
     queryFn: (prods) => fetchOnly(prods),
   });
 
-  const getQuantity = (index:number) => {
-
-    return ((cartData) ? cartData?[index].quantity : 0)
-
- 
+  const getQuantity = (index: number) => {
+    if (cartData) {
+      return cartData.data[index].quantity;
+    }
   };
 
-  // interface CartProduct {
-  //   Product;
-  // }
-  //crate type and sent with added quantity
-  //figure out hwo to send props separately
   const renderProducts = () => {
     return productData?.map((product, index) => {
       const quantity = getQuantity(index);
-      const blah: CartProductCardProps = {
+      const cardProps = {
         item: product,
-        quantity: 3,
+        quantity,
       };
-      return <CartProductCard {...blah} key={product.id} />;
+      return <CartProductCard cardProps={cardProps} key={product.id} />;
     });
   };
 
@@ -72,6 +67,14 @@ const CartPage = () => {
 export default CartPage;
 
 //TODO
-//connect add to cart button on card
-// make cart list items
-// add to cart, then check cart for stale data
+//show as incart
+//disable add to card
+//fix number bug cart card
+//  to repro, just add out of order, add bike 2, then bike one, then go fiddle with arrows
+//add decr mutation
+//add change mutation
+//fix incr decr button and onchange
+//add to cart buton position
+//add delete button in cart
+// typescript fixes
+// make custom hook like he did

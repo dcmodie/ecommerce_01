@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CartItem } from '../utilities/Types';
+import { CartItem } from '../types';
 
 const fetchCart = async () =>
   await axios.get<CartItem[]>('http://localhost:3001/cart');
@@ -14,21 +14,11 @@ const addItem = async (itemId: number) => {
     });
   } else {
     const newObj = { id: itemId, quantity: 1 };
-    //cart.data.push(newObj);
     return axios.post('http://localhost:3001/cart', newObj);
   }
 };
 
-// headers: {
-//   'Content-Type': 'application/json'
-// }
-
-//('{"name": "Lisa", "salary": "8000"}');
-
-const testFcn = () => {
-  console.log('test fcn');
-};
-export { fetchCart, addItem, testFcn };
+export { fetchCart, addItem };
 
 // axios
 //   .put(`http://localhost:3001/cart`, newData)
