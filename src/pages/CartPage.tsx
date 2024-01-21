@@ -2,11 +2,7 @@ import { fetchCart, addItem } from '../apis/cart';
 import { fetchOnly } from '../apis/products';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { CartItem } from '../types';
-import CartProductCard, {
-  CartProductCardProps,
-} from '../components/CartProductCard';
-import { getFormHelperTextUtilityClasses } from '@mui/material';
+import CartProductCard from '../components/CartProductCard';
 const CartPage = () => {
   const [products, setProducts] = useState();
 

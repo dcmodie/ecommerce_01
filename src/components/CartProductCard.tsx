@@ -24,7 +24,6 @@ export default function CartProductCard({ cardProps }: CartProductCardProps) {
   const mutation = useMutation({
     mutationFn: addItem,
     onSuccess: async () => {
-      //refetch();
       queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
   });
