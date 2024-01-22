@@ -1,6 +1,6 @@
 import { fetchCart, addItem } from '../apis/cart';
 import { fetchOnly } from '../apis/products';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import CartProductCard from '../components/CartProductCard';
 const CartPage = () => {
@@ -63,14 +63,16 @@ const CartPage = () => {
 export default CartPage;
 
 //TODO
-//show as incart
-//disable add to card
+//show item as incart
+//disable add to card when in cart
 //fix number bug cart card
 //  to repro, just add out of order, add bike 2, then bike one, then go fiddle with arrows
 //add decr mutation
 //add change mutation
 //fix incr decr button and onchange
 //add to cart buton position
-//add delete button in cart
+//add remove button in cart
 // typescript fixes
+//cartprocuctcard, this page
 // make custom hook like he did
+//loading sponners

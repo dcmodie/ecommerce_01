@@ -1,27 +1,38 @@
 import ProductCard from '../components/ProductCard';
-import BooksContext from '../context/Books';
-import { useContext } from 'react';
 import { useEffect } from 'react';
-import { useShoppingCart } from '../context/ShoppingCartContext';
+import { useQuery } from '@tanstack/react-query';
+import { fetchCart } from '../apis/cart';
+import { Product, CartItem } from '../types/';
+
 import useProducts from '../hooks/useProducts';
+import { listItemAvatarClasses } from '@mui/material';
 
 const ShoppingPage: React.FC = () => {
-  //const { count, incrementCount } = useContext(BooksContext);
-  const { getItemQuantity, cartItems, increaseItemQuantity } =
-    useShoppingCart();
-  // useMutation for changing the cart
-  //     onSuccess, invalidate the query
-  //     look up documentation on react query invaliation
-
   const { data, error, isLoading, isSuccess, refetch } = useProducts({
     enabled: false,
   });
+  const {
+    data: cartData,
+    error: fetchCartError,
+    isLoading: fetchCartIsLoading,
+  } = useQuery({
+    queryKey: ['cart'],
+    queryFn: fetchCart,
+  });
+
   console.log('products', data);
-  console.log('cartItems:', cartItems);
+  console.log('cartItems:', cartData);
 
   useEffect(() => {
     refetch();
   }, []);
+
+  const itemInCart: boolean = (item: Product) => {
+    const inCart: CartItem[] = cartData?.data.filter((cartItem) => {
+      return cartItem.id === item.id;
+    });
+    return inCart.length > 0;
+  };
 
   if (isLoading) {
     //TODO add loading spinner
@@ -41,7 +52,13 @@ const ShoppingPage: React.FC = () => {
         <div className="flex flex-wrap">
           {isSuccess &&
             data.map((item) => {
-              return <ProductCard item={item} key={item.id} />;
+              return (
+                <ProductCard
+                  item={item}
+                  key={item.id}
+                  itemInCart={itemInCart(item)}
+                />
+              );
             })}
         </div>
       </div>

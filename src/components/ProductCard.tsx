@@ -12,10 +12,11 @@ import { addItem } from '../apis/cart';
 //could add a property in here that is only needed in the UI
 export interface ProductCardProps {
   item: Product;
+  itemInCart: boolean;
 }
 //q: add to cart on bottom
 //q: flex , or css grid
-export default function ProductCard({ item }: ProductCardProps) {
+export default function ProductCard({ item, itemInCart }: ProductCardProps) {
   //console.log('hello ', id, name, cost, image);
   const queryClient = useQueryClient();
   // const { refetch } = useQuery({
@@ -26,8 +27,7 @@ export default function ProductCard({ item }: ProductCardProps) {
   const mutation = useMutation({
     mutationFn: addItem,
     onSuccess: async () => {
-      //refetch();
-      // queryClient.invalidateQueries({ queryKey: ['cart'] });
+      queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
   });
   const { id, name, image, cost, description } = item;
@@ -46,13 +46,19 @@ export default function ProductCard({ item }: ProductCardProps) {
         <Typography variant="body2">{description} </Typography>
       </CardContent>
       <CardActions className="relative">
-        <Button
-          size="small"
-          color="warning"
-          onClick={() => mutation.mutate(id)}
-        >
-          Add To Cart
-        </Button>
+        {!itemInCart ? (
+          <Button
+            size="small"
+            color="warning"
+            onClick={() => mutation.mutate(id)}
+          >
+            Add To Cart
+          </Button>
+        ) : (
+          <Button size="small" disabled={true}>
+            Added To Cart
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

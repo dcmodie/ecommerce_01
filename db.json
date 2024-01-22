@@ -60,23 +60,27 @@
   "cart": [
     {
       "id": 1,
-      "quantity": 81
+      "quantity": 84
+    },
+    {
+      "id": 3,
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "quantity": 1
     },
     {
       "id": 2,
-      "quantity": 8
-    },
-    {
-      "id": 7,
-      "quantity": 3
+      "quantity": 1
     },
     {
       "id": 8,
       "quantity": 1
-    },
-    {
-      "id": 3,
-      "quantity": 4
     }
   ]
 }
